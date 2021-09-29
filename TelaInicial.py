@@ -5,8 +5,10 @@
 
 
 from tkinter import *
+from ttkbootstrap import Style
 
 janela = Tk()
+style = Style('darkly')
 
 
 usuario = Label(janela, width = 12, text = "Usuário")
