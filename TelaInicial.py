@@ -10,6 +10,8 @@ from ttkbootstrap import Style
 janela = Tk()
 style = Style('darkly')
 
+janela = style.master
+
 
 usuario = Label(janela, width = 12, text = "Usuário")
 usuario.place(x = "350", y = "380")
