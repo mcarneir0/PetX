@@ -1,9 +1,6 @@
 import SQLite
 from model.Usuario import Usuario
 
-a = Usuario("Matheus", "Carneiro", "072.068.043-30", "matheusfeitosa@outlook.com", "1234")
-b = Usuario("teste", "teste", "teste", "teste", "teste")
-
 
 # noinspection SqlInsertValues
 def create(usuario):
