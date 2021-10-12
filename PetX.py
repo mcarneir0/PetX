@@ -3,7 +3,7 @@
 
 # ## Tela Inicial
 
-# In[51]:
+# In[66]:
 
 
 from tkinter import *
@@ -37,9 +37,10 @@ def esconde_frame():
     frame_animais.pack_forget()
     frame_adocao.pack_forget()
     frame_compra.pack_forget()
+    frame_tela_inicial.pack_forget()
     frame_carrinho.pack_forget()
     frame_pedidos.pack_forget()
-    frame_tela_inicial.pack_forget()
+    
     
 def cadastro_sucesso():
     esconde_frame()
@@ -102,6 +103,11 @@ menubar.add_cascade(label="Login", menu=Login)
 Produtos = Menu(menubar, tearoff = 0)
 Produtos.add_command(label="Produtos", command=frame_produtos)
 menubar.add_cascade(label="Produtos", menu=Produtos)
+
+
+Pedidos = Menu(menubar, tearoff = 0)
+Pedidos.add_command(label="Pedidos", command=frame_pedidos)
+menubar.add_cascade(label="Pedidos", menu=Pedidos)
 
 
 
@@ -232,7 +238,7 @@ preco_lb.place(x = 425, y=340)
 preco_lb_janela = Entry(produtos_frame)
 preco_lb_janela.place(x = 425, y=370)
 
-carrinho_bt = Button(produtos_frame, text="Adicionar ao carrinho", font=('Helvetica', 13), command=frame_carrinho)
+carrinho_bt = Button(produtos_frame, text="Adicionar aos pedidos", font=('Helvetica', 13), command=frame_pedidos)
 carrinho_bt.place(x = 425, y=420)
 
 
@@ -245,36 +251,42 @@ titulo_animais = ttk.Label(frame_animais, text = "Animais",
                    font=('Helvetica', 30))
 titulo_animais.place(x = 400, y= 40)
 
+cod_animais_lb = Label(frame_animais, text="COD DO ANIMAL",font=('Helvetica', 13) )
+cod_animais_lb.place(x = 425, y=160)
+cod_animais_janela = Entry(frame_animais)
+cod_animais_janela.place(x = 425, y=190)
+
+
 tipo_animais_lb = Label(frame_animais, text="TIPO DO ANIMAL",font=('Helvetica', 13) )
-tipo_animais_lb.place(x = 425, y=160)
+tipo_animais_lb.place(x = 425, y=220)
 tipo_animais_janela = Entry(frame_animais)
-tipo_animais_janela.place(x = 425, y=190)
+tipo_animais_janela.place(x = 425, y=250)
 
 nome_animais_lb = Label(frame_animais, text="NOME DO ANIMAL",font=('Helvetica', 13) )
-nome_animais_lb.place(x = 425, y=225)
+nome_animais_lb.place(x = 425, y=280)
 nome_animais_janela = Entry(frame_animais)
-nome_animais_janela.place(x = 425, y=255)
+nome_animais_janela.place(x = 425, y=310)
 
 raca_animais_lb = Label(frame_animais, text="RAÇA DO ANIMAL",font=('Helvetica', 13) )
-raca_animais_lb.place(x = 425, y=280)
+raca_animais_lb.place(x = 425, y=340)
 raca_animais_janela = Entry(frame_animais)
-raca_animais_janela.place(x = 425, y=310)
+raca_animais_janela.place(x = 425, y=370)
 
 tamanho_animais_lb = Label(frame_animais, text="TAMANHO DO ANIMAL",font=('Helvetica', 13) )
-tamanho_animais_lb.place(x = 425, y=335)
+tamanho_animais_lb.place(x = 425, y=400)
 tamanho_animais_janela = Entry(frame_animais)
-tamanho_animais_janela.place(x = 425, y=365)
+tamanho_animais_janela.place(x = 425, y=430)
 
 preco_animais_lb = Label(frame_animais, text="PREÇO DO ANIMAL",font=('Helvetica', 13) )
-preco_animais_lb.place(x = 425, y=395)
+preco_animais_lb.place(x = 425, y=460)
 preco_animais_janela = Entry(frame_animais)
-preco_animais_janela.place(x = 425, y=425)
+preco_animais_janela.place(x = 425, y=490)
 
 adocao_bt = Button(frame_animais, text="Adoção",font=('Helvetica', 13), command=frame_adocao )
-adocao_bt.place(x = 420, y = 470)
+adocao_bt.place(x = 420, y = 540)
 
 compra_bt = Button(frame_animais, text="Compra",font=('Helvetica', 13), command=frame_compra )
-compra_bt.place(x = 515, y = 470)
+compra_bt.place(x = 515, y = 540)
 
 
 
@@ -400,6 +412,10 @@ valor_total_lb = Label(frame_pedidos, text="VALOR TOTAL",font=('Helvetica', 13) 
 valor_total_lb.place(x = 425, y=340)
 valor_total_janela = Entry(frame_pedidos)
 valor_total_janela.place(x = 425, y=370)
+
+bt_carrinho = Button(frame_pedidos, text="Adicionar ao carrinho", font=('Helvetica', 13), command=frame_carrinho)
+bt_carrinho.place(x = 425, y = 425)
+
 
 
 
