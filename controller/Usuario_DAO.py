@@ -1,5 +1,4 @@
 import SQLite
-from model.Usuario import Usuario
 
 
 # noinspection SqlInsertValues
