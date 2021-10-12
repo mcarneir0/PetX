@@ -23,3 +23,37 @@ def criar_db_usando_script(nome_do_arquivo):
     cursor.executescript(script)
     db.commit()
     db.close()
+
+
+def executar_consulta(consulta):
+    """Função para realizar consultas ao Banco de Dados SQLite"""
+
+    db = criar_conexao()
+    cursor = db.cursor()
+    try:
+        cursor.execute(consulta)
+        if str(consulta).__contains__("SELECT"):
+            return cursor.fetchall()
+        db.commit()
+        print("Consulta realizada com sucesso")
+    except Error as e:
+        print("Erro: ", e)
+    finally:
+        db.close()
+
+
+def executar_consulta_com_dados(consulta, dados):
+    """Função para realizar consultas com dados ao Banco de Dados SQLite"""
+
+    db = criar_conexao()
+    cursor = db.cursor()
+    try:
+        cursor.execute(consulta, dados)
+        if str(consulta).__contains__("SELECT"):
+            return cursor.fetchall()
+        db.commit()
+        print("Consulta realizada com sucesso")
+    except Error as e:
+        print("Erro: ", e)
+    finally:
+        db.close()
