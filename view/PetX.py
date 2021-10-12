@@ -1,17 +1,15 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-<<<<<<< HEAD:view/PetX.py
-=======
 # ## Tela Inicial
 
 # In[66]:
 
 
->>>>>>> upstream/main:PetX.py
 from tkinter import *
 from ttkbootstrap import Style
 from PIL import ImageTk, Image
+import ttkbootstrap
 from tkinter import ttk
 
 tela_inicial = Tk()
