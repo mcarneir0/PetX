@@ -1,4 +1,5 @@
 import SQLite
+# from model.Usuario import Usuario     # para testes da função create
 
 
 # noinspection SqlInsertValues
