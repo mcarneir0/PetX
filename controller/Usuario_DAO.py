@@ -2,10 +2,10 @@ import SQLite
 # from model.Usuario import Usuario     # para testes da função create
 
 
-# noinspection SqlInsertValues
 def create(usuario):
     """Função para criar usuário no banco de dados"""
 
+    # noinspection SqlInsertValues
     consulta = """
     INSERT INTO
       Usuarios (nome, sobrenome, cpf, email, senha)
