@@ -11,7 +11,7 @@ DROP TABLE IF EXISTS Adocao_ou_Compra;
 CREATE TABLE Adocao_ou_Compra (
 	idAdocao_ou_Compra INTEGER PRIMARY KEY NOT NULL,
 	id_do_Usuario INTEGER REFERENCES Usuarios (idUsuarios) NOT NULL,
-	id_do_Animal INTEGER REFERENCES Animais (idAnimais) NOT NULL,
+	id_do_animal INTEGER REFERENCES Animais (idAnimais) NOT NULL,
 	data DATE NOT NULL, preco REAL
 );
 
@@ -20,7 +20,7 @@ DROP TABLE IF EXISTS Animais;
 CREATE TABLE Animais (
 	idAnimais INTEGER PRIMARY KEY NOT NULL,
 	nome TEXT,
-	tipo_de_Animal TEXT NOT NULL,
+	tipo_de_animal TEXT NOT NULL,
 	raca TEXT,
 	tamanho TEXT NOT NULL,
 	preco REAL
