@@ -1,3 +1,4 @@
 .idea/*
 controller/database.sqlite
 *.pyc
+__pycache__
