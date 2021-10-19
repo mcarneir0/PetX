@@ -1,4 +1,6 @@
-import SQLite
+#import SQLite
+import sqlite3
+
 # from model.Usuario import Usuario     # para testes da função create
 
 
@@ -13,14 +15,14 @@ def create(usuario):
       (?,?,?,?,?);
     """
     dados = (usuario.Nome, usuario.Sobrenome, usuario.CPF, usuario.Email, usuario.Senha)
-    SQLite.executar_consulta_com_dados(consulta, dados)
+    sqlite3.executar_consulta_com_dados(consulta, dados)
 
 
 def read():
     """Função para listar todos os usuários do banco de dados"""
 
     consulta = "SELECT * FROM Usuarios"
-    return SQLite.executar_consulta(consulta)
+    return sqlite3.executar_consulta(consulta)
 
 
 def read_dados(busca, categoria):
@@ -36,7 +38,7 @@ def read_dados(busca, categoria):
         LIKE ?
         """.format(categoria)
     dados = ('%' + busca + '%',)  # Não remova a vírgula senão eu paro de funcionar :)
-    return SQLite.executar_consulta_com_dados(consulta, dados)
+    return sqlite3.executar_consulta_com_dados(consulta, dados)
 
 
 def update(id_usuario, info, categoria):
@@ -54,11 +56,11 @@ def update(id_usuario, info, categoria):
         WHERE idUsuarios = {}
         """.format(categoria, id_usuario)
     dados = (info,)  # Não remova a vírgula senão eu paro de funcionar :)
-    SQLite.executar_consulta_com_dados(consulta, dados)
+    sqlite3.executar_consulta_com_dados(consulta, dados)
 
 
 def delete(id_usuario):
     """Função para remover usuário do banco"""
 
     consulta = "DELETE FROM Usuarios WHERE idUsuarios = {}".format(id_usuario)
-    SQLite.executar_consulta(consulta)
+    sqlite3.executar_consulta(consulta)
