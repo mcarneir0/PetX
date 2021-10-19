@@ -11,6 +11,15 @@ from ttkbootstrap import Style
 from PIL import ImageTk, Image
 import ttkbootstrap
 from tkinter import ttk
+from controller.Usuario_DAO import *
+from controller.Animal_DAO import *
+from controller.Produto_DAO import *
+from controller.SQLite import *
+from model import *
+
+
+
+
 
 tela_inicial = Tk()
 tela_inicial.title("PetX")
@@ -44,6 +53,7 @@ def esconde_frame():
     
 def cadastro_sucesso():
     esconde_frame()
+    texto = Label(frame_cadastrar, text="Cadastro realizado com sucesso!").pack()
     frame_login.pack(fill="both", expand=1)
     
 def entrar():
