@@ -3,7 +3,7 @@
 
 # ## Tela Inicial
 
-# In[66]:
+# In[21]:
 
 
 from tkinter import *
@@ -15,13 +15,13 @@ from tkinter import ttk
 tela_inicial = Tk()
 tela_inicial.title("PetX")
 tela_inicial.resizable(FALSE, FALSE)
-tela_inicial.iconbitmap("F:\Programação\Curso Programador de Sistemas\Projeto PetX\pet.ico")
+tela_inicial.iconbitmap("Imagens\pet.ico")
 tela_inicial.geometry("1100x750+800+50")
 
 style = Style('minty')
 tela_inicial = style.master
 
-imagem = ImageTk.PhotoImage(Image.open("F:\Programação\Curso Programador de Sistemas\Projeto PetX\petx.png"))
+imagem = ImageTk.PhotoImage(Image.open("Imagens\petx.png"))
 imagemL = Label(image=imagem)
 imagemL.place(x = 300, y = 50)
 
@@ -159,7 +159,7 @@ senha_tela.place(x = "460", y = "610")
 botao_entrar = Button(frame_login, text = "Entrar", command=entrar)
 botao_entrar.place(x = "460" , y = "650")
 
-imagem = ImageTk.PhotoImage(Image.open("F:\Programação\Curso Programador de Sistemas\Projeto PetX\petx.png"))
+imagem = ImageTk.PhotoImage(Image.open("Imagens\petx.png"))
 imagemL = Label(image=imagem)
 imagemL.place(x = 300, y = 50)
 
