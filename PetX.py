@@ -16,6 +16,9 @@ from controller.Animal_DAO import *
 from controller.Produto_DAO import *
 from controller.SQLite import *
 from model import *
+import sqlite3
+from sqlite3 import Error
+from model.Usuario import Usuario
 
 
 
@@ -52,10 +55,12 @@ def esconde_frame():
     
     
 def cadastro_sucesso():
-    esconde_frame()
-    texto = Label(frame_cadastrar, text="Cadastro realizado com sucesso!").pack()
+    confirmacao = Toplevel(frame_cadastrar)
+    texto = Label(confirmacao, text="Cadastro realizado com sucesso!").pack()
     frame_login.pack(fill="both", expand=1)
-    
+    esconde_frame()
+
+
 def entrar():
     esconde_frame()
     frame_tela_inicial.pack(fill="both", expand=1)
@@ -219,6 +224,7 @@ cadastrar_bt = Button(frame_cadastrar, text="Cadastrar", font=('Helvetica', 13),
 cadastrar_bt.place(x = 425, y=515)
 
 
+
 # frame produtos
 
 produtos_frame = Frame(tela_inicial, width = 1100, height = 750)
@@ -250,6 +256,8 @@ preco_lb_janela.place(x = 425, y=370)
 
 carrinho_bt = Button(produtos_frame, text="Adicionar aos pedidos", font=('Helvetica', 13), command=frame_pedidos)
 carrinho_bt.place(x = 425, y=420)
+
+
 
 
 
