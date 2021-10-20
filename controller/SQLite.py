@@ -7,7 +7,7 @@ def criar_conexao():
 
     conexao = None
     try:
-        conexao = sqlite3.connect("database.sqlite")
+        conexao = sqlite3.connect("controller\database.sqlite")
     except Error as e:
         print("Erro:", e)
     return conexao
