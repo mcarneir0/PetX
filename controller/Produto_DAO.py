@@ -1,5 +1,4 @@
-#import SQLite
-import sqlite3
+import SQLite
 # from model.Produto import Produto       # Usado para testes da função create
 
 
@@ -14,14 +13,14 @@ def create(produto):
             (?, ?, ?, ?);
     """
     dados = (produto.Nome, produto.Descricao, produto.Quantidade, produto.Preco)
-    sqlite3.executar_consulta_com_dados(consulta, dados)
+    SQLite.executar_consulta_com_dados(consulta, dados)
 
 
 def read():
     """Função para listar todos os animais do banco de dados"""
 
     consulta = "SELECT * FROM Produtos"
-    return sqlite3.executar_consulta(consulta)
+    return SQLite.executar_consulta(consulta)
 
 
 def read_dados(busca, categoria):
@@ -38,7 +37,7 @@ def read_dados(busca, categoria):
         LIKE ?
     """.format(categoria)
     dados = ('%' + busca + '%',)
-    return sqlite3.executar_consulta_com_dados(consulta, dados)
+    return SQLite.executar_consulta_com_dados(consulta, dados)
 
 
 def update(id_produto, info, categoria):
@@ -56,11 +55,11 @@ def update(id_produto, info, categoria):
         WHERE idProdutos = {}
     """.format(categoria, id_produto)
     dados = (info,)
-    return sqlite3.executar_consulta_com_dados(consulta, dados)
+    return SQLite.executar_consulta_com_dados(consulta, dados)
 
 
 def delete(id_produto):
     """Função para remover animais do banco de dados"""
 
     consulta = "DELETE FROM Produtos WHERE idProdutos = {}".format(id_produto)
-    sqlite3.executar_consulta(consulta)
+    SQLite.executar_consulta(consulta)
