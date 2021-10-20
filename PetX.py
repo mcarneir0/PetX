@@ -8,6 +8,8 @@ from controller import Produto_DAO
 from model.Usuario import Usuario
 from model.Animal import Animal
 from model.Produto import Produto
+from functools import partial
+
 
 tela_inicial = Tk()
 tela_inicial.title("PetX")
@@ -162,6 +164,7 @@ titulo = ttk.Label(frame_cadastrar, text="Cadastre-se",
                    font=('Helvetica', 30))
 titulo.place(x=400, y=40)
 
+
 cod_user_lb = Label(frame_cadastrar, text="COD USUÁRIO", font=('Helvetica', 13))
 cod_user_lb.place(x=425, y=200)
 cod_user_janela = Entry(frame_cadastrar)
@@ -169,31 +172,40 @@ cod_user_janela.place(x=425, y=225)
 
 nome_lb = Label(frame_cadastrar, text="NOME", font=('Helvetica', 13))
 nome_lb.place(x=425, y=250)
-nome_janela = Entry(frame_cadastrar)
-nome_janela.place(x=425, y=275)
+nome_tela = Entry(frame_cadastrar)
+nome_tela.place(x=425, y=275)
 
 sobrenome_lb = Label(frame_cadastrar, text="SOBRENOME", font=('Helvetica', 13))
 sobrenome_lb.place(x=425, y=300)
-sobrenome_janela = Entry(frame_cadastrar)
-sobrenome_janela.place(x=425, y=325)
+sobrenome_tela = Entry(frame_cadastrar)
+sobrenome_tela.place(x=425, y=325)
 
 cpf_lb = Label(frame_cadastrar, text="CPF", font=('Helvetica', 13))
 cpf_lb.place(x=425, y=350)
-cpf_janela = Entry(frame_cadastrar)
-cpf_janela.place(x=425, y=375)
+cpf_tela = Entry(frame_cadastrar)
+cpf_tela.place(x=425, y=375)
 
 email_lb = Label(frame_cadastrar, text="EMAIL", font=('Helvetica', 13))
 email_lb.place(x=425, y=400)
-email_janela = Entry(frame_cadastrar)
-email_janela.place(x=425, y=425)
+email_tela = Entry(frame_cadastrar)
+email_tela.place(x=425, y=425)
 
 senha_lb = Label(frame_cadastrar, text="SENHA", font=('Helvetica', 13))
 senha_lb.place(x=425, y=450)
-senha_janela = Entry(frame_cadastrar)
-senha_janela.place(x=425, y=475)
+senha_tela = Entry(frame_cadastrar)
+senha_tela.place(x=425, y=475)
+
+pessoa = Usuario(nome_tela, sobrenome_tela, cpf_tela, email_tela, senha_tela)
+
 
 cadastrar_bt = Button(frame_cadastrar, text="Cadastrar", font=('Helvetica', 13), command=cadastro_sucesso)
 cadastrar_bt.place(x=425, y=515)
+
+cadastrar_bt2 = Button(frame_cadastrar, text="Cadastrar no BD teste", font=('Helvetica', 13))
+cadastrar_bt2.place(x=100, y=515)
+
+cadastrar_bt2["command"] = partial(Usuario_DAO.create, pessoa)
+
 
 # frame produtos
 
