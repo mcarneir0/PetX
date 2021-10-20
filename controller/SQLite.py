@@ -7,9 +7,12 @@ def criar_conexao():
 
     conexao = None
     try:
-        conexao = sqlite3.connect("database.sqlite")
-    except Error as e:
-        print("Erro:", e)
+        conexao = sqlite3.connect("controller\database.sqlite")
+    except Error:
+        try:
+            conexao = sqlite3.connect("database.sqlite")
+        except Error as e:
+            print("Erro ao criar conexão:", e)
     return conexao
 
 

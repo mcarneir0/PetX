@@ -23,6 +23,7 @@ CREATE TABLE Animais (
 	tipo_de_animal TEXT NOT NULL,
 	raca TEXT,
 	tamanho TEXT NOT NULL,
+	peso REAL,
 	preco REAL
 );
 
@@ -39,8 +40,7 @@ DROP TABLE IF EXISTS Pedido;
 CREATE TABLE Pedido (
 	idPedido INTEGER PRIMARY KEY NOT NULL,
 	id_do_Usuario INTEGER REFERENCES Usuarios (idUsuarios) NOT NULL,
-	data DATE NOT NULL,
-	valor_total REAL
+	data DATE NOT NULL
 );
 
 -- Table: Produtos
