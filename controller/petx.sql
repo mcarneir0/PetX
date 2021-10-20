@@ -23,6 +23,7 @@ CREATE TABLE Animais (
 	tipo_de_animal TEXT NOT NULL,
 	raca TEXT,
 	tamanho TEXT NOT NULL,
+	peso REAL,
 	preco REAL
 );
 
