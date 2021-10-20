@@ -9,16 +9,16 @@ class Produto:
         return self.Nome
 
     def set_nome(self, nome):
-        return self.Nome
+        self.Nome = nome
 
     def get_descricao(self):
         return self.Descricao
 
     def set_descricao(self, descricao):
-        return self.Descricao
+        self.Descricao = descricao
     
     def get_preco(self):
         return self.Preco
 
     def set_preco(self, preco):
-        return self.Preco
+        self.Preco = preco
