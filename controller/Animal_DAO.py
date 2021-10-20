@@ -1,4 +1,4 @@
-import SQLite
+from controller import SQLite
 # from model.Animal import Animal       # Usado para testes da função create
 
 

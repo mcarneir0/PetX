@@ -1,4 +1,4 @@
-import SQLite
+from controller import SQLite
 # from model.Usuario import Usuario     # para testes da função create
 
 

@@ -1,4 +1,4 @@
-import SQLite
+from controller import SQLite
 # from model.Produto import Produto       # Usado para testes da função create
 
 
