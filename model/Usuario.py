@@ -30,3 +30,9 @@ class Usuario:
 
     def set_email(self, email):
         self.Email = email
+
+    def get_senha(self):
+        return self.Senha
+
+    def set_senha(self, senha):
+        self.Senha = senha
