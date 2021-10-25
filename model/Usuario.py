@@ -3,7 +3,7 @@ class Usuario:
     def __init__(self, nome, sobrenome, cpf, email, senha):
         self.Nome = nome
         self.Sobrenome = sobrenome
-        self.CPF = cpf
+        self.Cpf = cpf
         self.Email = email
         self.Senha = senha
 
@@ -20,10 +20,10 @@ class Usuario:
         self.Sobrenome = sobrenome
 
     def get_cpf(self):
-        return self.CPF
+        return self.Cpf
 
     def set_cpf(self, cpf):
-        self.CPF = cpf
+        self.Cpf = cpf
 
     def get_email(self):
         return self.Email
