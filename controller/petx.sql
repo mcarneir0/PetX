@@ -12,7 +12,7 @@ CREATE TABLE Adocao_ou_Compra (
 	idAdocao_ou_Compra INTEGER PRIMARY KEY NOT NULL,
 	id_do_Usuario INTEGER REFERENCES Usuarios (idUsuarios) NOT NULL,
 	id_do_animal INTEGER REFERENCES Animais (idAnimais) NOT NULL,
-	data DATE NOT NULL
+	data TEXT NOT NULL
 );
 
 -- Table: Animais
@@ -40,7 +40,7 @@ DROP TABLE IF EXISTS Pedido;
 CREATE TABLE Pedido (
 	idPedido INTEGER PRIMARY KEY NOT NULL,
 	id_do_Usuario INTEGER REFERENCES Usuarios (idUsuarios) NOT NULL,
-	data DATE NOT NULL
+	data TEXT NOT NULL
 );
 
 -- Table: Produtos
