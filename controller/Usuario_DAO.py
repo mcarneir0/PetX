@@ -12,7 +12,7 @@ def create(usuario):
     VALUES
       (?,?,?,?,?);
     """
-    dados = (usuario.Nome, usuario.Sobrenome, usuario.CPF, usuario.Email, usuario.Senha)
+    dados = (usuario.Nome, usuario.Sobrenome, usuario.Cpf, usuario.Email, usuario.Senha)
     SQLite.executar_consulta_com_dados(consulta, dados)
 
 

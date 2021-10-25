@@ -195,7 +195,7 @@ senha_lb.place(x=425, y=450)
 senha_tela = Entry(frame_cadastrar)
 senha_tela.place(x=425, y=475)
 
-pessoa = Usuario(nome_tela, sobrenome_tela, cpf_tela, email_tela, senha_tela)
+pessoa = Usuario(nome_tela.get(), sobrenome_tela.get(), cpf_tela.get(), email_tela.get(), senha_tela.get())
 
 
 cadastrar_bt = Button(frame_cadastrar, text="Cadastrar", font=('Helvetica', 13), command=cadastro_sucesso)
