@@ -16,6 +16,8 @@ tela_inicial.title("PetX")
 tela_inicial.resizable(FALSE, FALSE)
 tela_inicial.iconbitmap("Imagens\pet.ico")
 tela_inicial.geometry("1100x750+800+50")
+largura = 1100
+altura = 750
 
 style = Style('minty')
 tela_inicial = style.master
@@ -39,11 +41,25 @@ def esconde_frame():
     frame_pedidos.pack_forget()
 
 
+def cadastrar_usuario():
+    qtd_usuarios = len(Usuario_DAO.read())
+    pessoa = Usuario(nome_tela.get(), sobrenome_tela.get(), cpf_tela.get(), email_tela.get(), senha_tela.get())
+    Usuario_DAO.create(pessoa)
+    # Condição ternária abaixo > <Caso falso> if <teste> else <Caso verdadeiro>
+    cadastro_erro() if qtd_usuarios == len(Usuario_DAO.read()) else cadastro_sucesso()
+
+
 def cadastro_sucesso():
     confirmacao = Toplevel(frame_cadastrar)
-    texto = Label(confirmacao, text="Cadastro realizado com sucesso!").pack()
+    Label(confirmacao, text="Cadastro realizado com sucesso!").pack()
     frame_login.pack(fill="both", expand=1)
     esconde_frame()
+
+
+def cadastro_erro():
+    confirmacao = Toplevel(frame_cadastrar)
+    Label(confirmacao, text="Usuário não cadastrado, tente novamente").pack()
+    frame_login.pack(fill="both", expand=1)
 
 
 def entrar():
@@ -119,7 +135,7 @@ menubar.add_cascade(label="Animais", menu=Animais)
 
 # frame tela inicial
 
-frame_tela_inicial = Frame(tela_inicial, width=1100, height=750)
+frame_tela_inicial = Frame(tela_inicial, width=largura, height=altura)
 
 bt_produtos = Button(frame_tela_inicial, text="PRODUTOS", font=('Helvetica', 18), command=frame_produtos)
 bt_produtos.place(x=200, y=600)
@@ -135,7 +151,7 @@ bt_carrinho.place(x=900, y=50)
 
 # frame login
 
-frame_login = Frame(tela_inicial, width=1100, height=750)
+frame_login = Frame(tela_inicial, width=largura, height=altura)
 
 usuario = Label(frame_login, width=12, text="Usuário")
 usuario.place(x="430", y="525")
@@ -156,7 +172,7 @@ imagemL.place(x=300, y=50)
 
 # frame cadastrar
 
-frame_cadastrar = Frame(tela_inicial, width=1100, height=750)
+frame_cadastrar = Frame(tela_inicial, width=largura, height=altura)
 
 titulo = ttk.Label(frame_cadastrar, text="Cadastre-se",
                    style="primary.Inverse.TLabel",
@@ -195,23 +211,12 @@ senha_lb.place(x=425, y=450)
 senha_tela = Entry(frame_cadastrar)
 senha_tela.place(x=425, y=475)
 
-pessoa = Usuario(NONE, NONE, NONE, NONE, NONE)
-
-
-
-
-cadastrar_bt = Button(frame_cadastrar, text="Cadastrar", font=('Helvetica', 13), command=cadastro_sucesso)
+cadastrar_bt = Button(frame_cadastrar, text="Cadastrar", font=('Helvetica', 13), command=partial(cadastrar_usuario))
 cadastrar_bt.place(x=425, y=515)
-
-cadastrar_bt2 = Button(frame_cadastrar, text="Cadastrar no BD teste", font=('Helvetica', 13))
-cadastrar_bt2.place(x=100, y=515)
-
-cadastrar_bt2["command"] = partial(Usuario_DAO.create, pessoa)
-
 
 # frame produtos
 
-produtos_frame = Frame(tela_inicial, width=1100, height=750)
+produtos_frame = Frame(tela_inicial, width=largura, height=altura)
 titulo_produtos = ttk.Label(produtos_frame, text="Produtos",
                             style="primary.Inverse.TLabel",
                             padding=(50, 30, 50, 30),
@@ -238,12 +243,12 @@ preco_lb.place(x=425, y=340)
 preco_lb_janela = Entry(produtos_frame)
 preco_lb_janela.place(x=425, y=370)
 
-pedidos_bt = Button(produtos_frame, text="Adicionar aos pedidos", font=('Helvetica', 13), command=frame_pedidos)
-pedidos_bt.place(x = 425, y=420)
+carrinho_bt = Button(produtos_frame, text="Adicionar aos pedidos", font=('Helvetica', 13), command=frame_pedidos)
+carrinho_bt.place(x=425, y=420)
 
 # frame animais
 
-frame_animais = Frame(tela_inicial, width=1100, height=750)
+frame_animais = Frame(tela_inicial, width=largura, height=altura)
 titulo_animais = ttk.Label(frame_animais, text="Animais",
                            style="primary.Inverse.TLabel", padding=(50, 30, 50, 30),
                            font=('Helvetica', 30))
@@ -287,7 +292,7 @@ compra_bt.place(x=515, y=540)
 
 # frame adoção
 
-frame_adocao = Frame(tela_inicial, width=1100, height=750)
+frame_adocao = Frame(tela_inicial, width=largura, height=altura)
 titulo_adocao = ttk.Label(frame_adocao, text="Adoção",
                           style="primary.Inverse.TLabel", padding=(50, 30, 50, 30),
                           font=('Helvetica', 30))
@@ -323,7 +328,7 @@ bt_pedido.place(x=425, y=480)
 
 # frame compra
 
-frame_compra = Frame(tela_inicial, width=1100, height=750)
+frame_compra = Frame(tela_inicial, width=largura, height=altura)
 titulo_compra = ttk.Label(frame_compra, text="Compra",
                           style="primary.Inverse.TLabel", padding=(50, 30, 50, 30),
                           font=('Helvetica', 30))
@@ -359,7 +364,7 @@ bt_pedido.place(x=425, y=480)
 
 # frame carrinho de compras
 
-frame_carrinho = Frame(tela_inicial, width=1100, height=750)
+frame_carrinho = Frame(tela_inicial, width=largura, height=altura)
 titulo_carrinho = ttk.Label(frame_carrinho, text="Carrinho de compras",
                             style="primary.Inverse.TLabel", padding=(50, 30, 50, 30),
                             font=('Helvetica', 30))
@@ -377,7 +382,7 @@ cod_produto_janela.place(x=425, y=250)
 
 # frame pedidos
 
-frame_pedidos = Frame(tela_inicial, width=1100, height=750)
+frame_pedidos = Frame(tela_inicial, width=largura, height=altura)
 titulo_pedidos = ttk.Label(frame_pedidos, text="Pedidos",
                            style="primary.Inverse.TLabel", padding=(50, 30, 50, 30),
                            font=('Helvetica', 30))
