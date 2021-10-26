@@ -48,6 +48,9 @@ def cadastrar_usuario():
     # Condição ternária abaixo > <Caso falso> if <teste> else <Caso verdadeiro>
     cadastro_erro() if qtd_usuarios == len(Usuario_DAO.read()) else cadastro_sucesso()
 
+def cadastrar_produto():
+    produtos = Produto(nome_produto_janela.get(), descricao_lb_janela.get(), preco_lb_janela.get())
+    Produto_DAO.create(produtos)
 
 def cadastro_sucesso():
     confirmacao = Toplevel(frame_cadastrar)
@@ -243,7 +246,7 @@ preco_lb.place(x=425, y=340)
 preco_lb_janela = Entry(produtos_frame)
 preco_lb_janela.place(x=425, y=370)
 
-carrinho_bt = Button(produtos_frame, text="Adicionar aos pedidos", font=('Helvetica', 13), command=frame_pedidos)
+carrinho_bt = Button(produtos_frame, text="Adicionar aos pedidos", font=('Helvetica', 13), command=lambda:[frame_pedidos, cadastrar_produto()])
 carrinho_bt.place(x=425, y=420)
 
 # frame animais
