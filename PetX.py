@@ -195,7 +195,9 @@ senha_lb.place(x=425, y=450)
 senha_tela = Entry(frame_cadastrar)
 senha_tela.place(x=425, y=475)
 
-pessoa = Usuario(nome_tela.get(), sobrenome_tela.get(), cpf_tela.get(), email_tela.get(), senha_tela.get())
+pessoa = Usuario(NONE, NONE, NONE, NONE, NONE)
+
+
 
 
 cadastrar_bt = Button(frame_cadastrar, text="Cadastrar", font=('Helvetica', 13), command=cadastro_sucesso)
@@ -236,8 +238,8 @@ preco_lb.place(x=425, y=340)
 preco_lb_janela = Entry(produtos_frame)
 preco_lb_janela.place(x=425, y=370)
 
-carrinho_bt = Button(produtos_frame, text="Adicionar aos pedidos", font=('Helvetica', 13), command=frame_pedidos)
-carrinho_bt.place(x=425, y=420)
+pedidos_bt = Button(produtos_frame, text="Adicionar aos pedidos", font=('Helvetica', 13), command=frame_pedidos)
+pedidos_bt.place(x = 425, y=420)
 
 # frame animais
 
