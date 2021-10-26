@@ -49,6 +49,7 @@ CREATE TABLE Produtos (
 	idProdutos INTEGER PRIMARY KEY NOT NULL,
 	nome TEXT NOT NULL,
 	descricao TEXT NOT NULL,
+	quantidade INTEGER,
 	preco REAL
 );
 
