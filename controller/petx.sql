@@ -9,8 +9,8 @@ BEGIN TRANSACTION;
 -- Table: Adocao_ou_Compra
 DROP TABLE IF EXISTS Adocao_ou_Compra;
 CREATE TABLE Adocao_ou_Compra (
-	idAdocao_ou_Compra INTEGER PRIMARY KEY NOT NULL,
-	id_do_Usuario INTEGER REFERENCES Usuarios (idUsuarios) NOT NULL,
+	idAdocao_ou_compra INTEGER PRIMARY KEY NOT NULL,
+	id_do_usuario INTEGER REFERENCES Usuarios (idUsuarios) NOT NULL,
 	id_do_animal INTEGER REFERENCES Animais (idAnimais) NOT NULL,
 	data TEXT NOT NULL
 );
@@ -39,7 +39,7 @@ CREATE TABLE Carrinho_de_Compras (
 DROP TABLE IF EXISTS Pedido;
 CREATE TABLE Pedido (
 	idPedido INTEGER PRIMARY KEY NOT NULL,
-	id_do_Usuario INTEGER REFERENCES Usuarios (idUsuarios) NOT NULL,
+	id_do_usuario INTEGER REFERENCES Usuarios (idUsuarios) NOT NULL,
 	data TEXT NOT NULL
 );
 
