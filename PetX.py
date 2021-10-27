@@ -48,6 +48,15 @@ def cadastrar_usuario():
     # Condição ternária abaixo > <Caso falso> if <teste> else <Caso verdadeiro>
     cadastro_erro() if qtd_usuarios == len(Usuario_DAO.read()) else cadastro_sucesso()
 
+def cadastrar_produto():
+    produtos = Produto(nome_produto_janela.get(), descricao_lb_janela.get(), quantidade_lb_janela.get(), preco_lb_janela.get())
+    Produto_DAO.create(produtos)
+
+def cadastrar_animais():
+    animais = Animal(tipo_animais_janela.get(), nome_animais_janela.get(), raca_animais_janela.get(),
+                     tamanho_animais_janela.get(), preco_animais_janela.get())
+    Animal_DAO.create(animais)
+
 
 def cadastro_sucesso():
     confirmacao = Toplevel(frame_cadastrar)
@@ -223,27 +232,27 @@ titulo_produtos = ttk.Label(produtos_frame, text="Produtos",
                             font=('Helvetica', 30))
 titulo_produtos.place(x=400, y=40)
 
-cod_prod_lb = Label(produtos_frame, text="COD DO PRODUTO", font=('Helvetica', 13))
-cod_prod_lb.place(x=425, y=160)
-cod_prod_janela = Entry(produtos_frame)
-cod_prod_janela.place(x=425, y=190)
-
 nome_produto_lb = Label(produtos_frame, text="NOME DO PRODUTO", font=('Helvetica', 13))
-nome_produto_lb.place(x=425, y=220)
+nome_produto_lb.place(x=425, y=160)
 nome_produto_janela = Entry(produtos_frame)
-nome_produto_janela.place(x=425, y=250)
+nome_produto_janela.place(x=425, y=190)
 
 descricao_lb = Label(produtos_frame, text="DESCRIÇÃO", font=('Helvetica', 13))
-descricao_lb.place(x=425, y=280)
+descricao_lb.place(x=425, y=220)
 descricao_lb_janela = Entry(produtos_frame)
-descricao_lb_janela.place(x=425, y=310)
+descricao_lb_janela.place(x=425, y=250)
+
+quantidade_lb = Label(produtos_frame, text="QUANTIDADE", font=('Helvetica', 13))
+quantidade_lb.place(x=425, y=280)
+quantidade_lb_janela = Entry(produtos_frame)
+quantidade_lb_janela.place(x=425, y=310)
 
 preco_lb = Label(produtos_frame, text="PREÇO", font=('Helvetica', 13))
 preco_lb.place(x=425, y=340)
 preco_lb_janela = Entry(produtos_frame)
 preco_lb_janela.place(x=425, y=370)
 
-carrinho_bt = Button(produtos_frame, text="Adicionar aos pedidos", font=('Helvetica', 13), command=frame_pedidos)
+carrinho_bt = Button(produtos_frame, text="Adicionar aos pedidos", font=('Helvetica', 13), command=lambda:[frame_pedidos, cadastrar_produto()])
 carrinho_bt.place(x=425, y=420)
 
 # frame animais
@@ -289,6 +298,9 @@ adocao_bt.place(x=420, y=540)
 
 compra_bt = Button(frame_animais, text="Compra", font=('Helvetica', 13), command=frame_compra)
 compra_bt.place(x=515, y=540)
+
+adicionarbd_bt = Button(frame_animais, text="Adicionar ao bd", font=('Helvetica', 13), command=cadastrar_animais)
+adicionarbd_bt.place(x=515, y=600)
 
 # frame adoção
 
