@@ -8,11 +8,11 @@ def create(produto):
     # noinspection SqlInsertValues
     consulta = """
         INSERT INTO
-            Produtos (nome, descricao, preco)
+            Produtos (nome, descricao, quantidade, preco)
         VALUES 
-            (?, ?, ?);
+            (?, ?, ?, ?);
     """
-    dados = (produto.Nome, produto.Descricao, produto.Preco)
+    dados = (produto.Nome, produto.Descricao, produto.Quantidade, produto.Preco)
     SQLite.executar_consulta_com_dados(consulta, dados)
 
 
