@@ -70,8 +70,10 @@ def cadastrar_animais():
     cadastro_animal_erro() if qtd_animais == len(Animal_DAO.read()) else cadastro_animal_sucesso()
 
 def cadastrar_adocao():
-    pass
+    Adocao_ou_Compra_DAO.create(cod_user_janela.get(), cod_animal_janela.get())
 
+def cadastrar_compra():
+    Adocao_ou_Compra_DAO.create(cod_user_janela2.get(), cod_animal_janela2.get())
 
 
 
@@ -443,26 +445,16 @@ cod_animal_lb.place(x=425, y=220)
 cod_animal_janela = Entry(frame_adocao)
 cod_animal_janela.place(x=425, y=250)
 
-data_lb = Label(frame_adocao, text="DATA", font=('Helvetica', 13))
-data_lb.place(x=425, y=280)
-data_janela = Entry(frame_adocao)
-data_janela.place(x=425, y=310)
-
-preco_lb = Label(frame_adocao, text="PREÇO", font=('Helvetica', 13))
-preco_lb.place(x=425, y=340)
-preco_janela = Entry(frame_adocao)
-preco_janela.place(x=425, y=370)
 
 
-
-bt_cadastrar_adocao = Button(frame_adocao, text="Cadastrar Adoção", font=('Helvetica', 13))
-bt_cadastrar_adocao.place(x = 425, y=430)
+bt_cadastrar_adocao = Button(frame_adocao, text="Cadastrar Adoção", font=('Helvetica', 13), command=cadastrar_adocao)
+bt_cadastrar_adocao.place(x = 425, y=330)
 
 bt_pedido = Button(frame_adocao, text="Prosseguir para Pedido", font=('Helvetica', 13), command=frame_pedidos)
-bt_pedido.place(x = 425, y=480)
+bt_pedido.place(x = 425, y=380)
 
 sair_bt = Button(frame_adocao, text="Sair", font=('Helvetica', 13), command=sair)
-sair_bt.place(x = 425, y = 540)
+sair_bt.place(x = 425, y = 440)
 
 
 
@@ -478,32 +470,23 @@ titulo_compra.place(x=400, y=40)
 
 cod_user_lb = Label(frame_compra, text="COD USUÁRIO", font=('Helvetica', 13))
 cod_user_lb.place(x=425, y=160)
-cod_user_janela = Entry(frame_compra)
-cod_user_janela.place(x=425, y=190)
+cod_user_janela2 = Entry(frame_compra)
+cod_user_janela2.place(x=425, y=190)
 
 cod_animal_lb = Label(frame_compra, text="COD ANIMAL", font=('Helvetica', 13))
 cod_animal_lb.place(x=425, y=220)
-cod_animal_janela = Entry(frame_compra)
-cod_animal_janela.place(x=425, y=250)
+cod_animal_janela2 = Entry(frame_compra)
+cod_animal_janela2.place(x=425, y=250)
 
-data_lb = Label(frame_compra, text="DATA", font=('Helvetica', 13))
-data_lb.place(x=425, y=280)
-data_janela = Entry(frame_compra)
-data_janela.place(x=425, y=310)
 
-preco_lb = Label(frame_compra, text="PREÇO", font=('Helvetica', 13))
-preco_lb.place(x=425, y=340)
-preco_janela = Entry(frame_compra)
-preco_janela.place(x=425, y=370)
-
-bt_cadastrar_compra = Button(frame_compra, text="Cadastrar Compra", font=('Helvetica', 13))
-bt_cadastrar_compra.place(x = 425, y=430)
+bt_cadastrar_compra = Button(frame_compra, text="Cadastrar Compra", font=('Helvetica', 13), command=cadastrar_compra)
+bt_cadastrar_compra.place(x = 425, y=340)
 
 bt_pedido2 = Button(frame_compra, text="Prosseguir para Pedido", font=('Helvetica', 13), command=frame_pedidos)
-bt_pedido2.place(x = 425, y=480)
+bt_pedido2.place(x = 425, y=390)
 
 sair3_bt = Button(frame_compra, text="Sair", font=('Helvetica', 13), command=sair)
-sair3_bt.place(x = 425, y = 540)
+sair3_bt.place(x = 425, y = 440)
 
 # frame carrinho de compras
 
