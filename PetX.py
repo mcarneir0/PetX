@@ -71,9 +71,11 @@ def cadastrar_animais():
 
 def cadastrar_adocao():
     Adocao_ou_Compra_DAO.create(cod_user_janela.get(), cod_animal_janela.get())
+    cadastro_adocao_sucesso()
 
 def cadastrar_compra():
     Adocao_ou_Compra_DAO.create(cod_user_janela2.get(), cod_animal_janela2.get())
+    cadastro_compra_sucesso()
 
 
 
@@ -109,6 +111,18 @@ def cadastro_animal_erro():
     confirmacao = Toplevel(frame_animais)
     Label(confirmacao, text="Animal não cadastrado, tente novamente").pack()
     frame_animais.pack(fill="both", expand=1)
+
+def cadastro_adocao_sucesso():
+    confirmacao = Toplevel(frame_adocao)
+    Label(confirmacao, text="Animal cadastrado para adoção!").pack()
+    esconde_frame()
+
+def cadastro_compra_sucesso():
+    confirmacao = Toplevel(frame_adocao)
+    Label(confirmacao, text="Animal cadastrado para compra!").pack()
+    esconde_frame()
+
+
 
 
 def entrar():
@@ -480,10 +494,10 @@ cod_animal_janela2.place(x=425, y=250)
 
 
 bt_cadastrar_compra = Button(frame_compra, text="Cadastrar Compra", font=('Helvetica', 13), command=cadastrar_compra)
-bt_cadastrar_compra.place(x = 425, y=340)
+bt_cadastrar_compra.place(x = 425, y=330)
 
 bt_pedido2 = Button(frame_compra, text="Prosseguir para Pedido", font=('Helvetica', 13), command=frame_pedidos)
-bt_pedido2.place(x = 425, y=390)
+bt_pedido2.place(x = 425, y=380)
 
 sair3_bt = Button(frame_compra, text="Sair", font=('Helvetica', 13), command=sair)
 sair3_bt.place(x = 425, y = 440)
