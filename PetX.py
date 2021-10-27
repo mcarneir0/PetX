@@ -147,7 +147,7 @@ def listar_usuarios():
 
 
 
-def mostra_produtos():
+def listar_produtos():
     esconde_frame()
     frame_listar_produtos.pack(fill="both", expand=1)
     registros = np.asarray(Produto_DAO.read())
@@ -160,7 +160,7 @@ def mostra_produtos():
 
 
 
-def mostra_animais():
+def listar_animais():
     esconde_frame()
     frame_listar_animais.pack(fill="both", expand=1)
     registros = np.asarray(Animal_DAO.read)
@@ -211,10 +211,10 @@ bt_cadastrar_animais.place(x = 10, y = 550)
 bt_cadastrar = Button(frame_tela_inicial, text="CADASTRE-SE", font=('Helvetica', 18), command=frame_cadastrar)
 bt_cadastrar.place(x = 10, y = 600)
 
-bt_listar_animais = Button(frame_tela_inicial, text="ANIMAIS CADASTRADOS", font=('Helvetica', 18), command=mostra_animais)
+bt_listar_animais = Button(frame_tela_inicial, text="ANIMAIS CADASTRADOS", font=('Helvetica', 18), command=listar_animais)
 bt_listar_animais.place(x=750, y=500)
 
-bt_listar_produtos = Button(frame_tela_inicial, text="PRODUTOS CADASTRADOS", font=('Helvetica', 18), command=mostra_produtos)
+bt_listar_produtos = Button(frame_tela_inicial, text="PRODUTOS CADASTRADOS", font=('Helvetica', 18), command=listar_produtos)
 bt_listar_produtos.place(x=750, y=550)
 
 bt_listar_usuarios = Button(frame_tela_inicial, text="USUÁRIOS CADASTRADOS", font=('Helvetica', 18), command=listar_usuarios)
