@@ -54,7 +54,7 @@ def cadastrar_produto():
 
 def cadastrar_animais():
     animais = Animal(tipo_animais_janela.get(), nome_animais_janela.get(), raca_animais_janela.get(),
-                     tamanho_animais_janela.get(), preco_animais_janela.get())
+                     tamanho_animais_janela.get(), peso_animais_janela.get(), preco_animais_janela.get())
     Animal_DAO.create(animais)
 
 
@@ -288,19 +288,24 @@ tamanho_animais_lb.place(x=425, y=400)
 tamanho_animais_janela = Entry(frame_animais)
 tamanho_animais_janela.place(x=425, y=430)
 
+peso_animais_lb = Label(frame_animais, text="PESO DO ANIMAL", font=('Helvetica', 13))
+peso_animais_lb.place(x=425, y=460)
+peso_animais_janela = Entry(frame_animais)
+peso_animais_janela.place(x=425, y=490)
+
 preco_animais_lb = Label(frame_animais, text="PREÇO DO ANIMAL", font=('Helvetica', 13))
-preco_animais_lb.place(x=425, y=460)
+preco_animais_lb.place(x=425, y=520)
 preco_animais_janela = Entry(frame_animais)
-preco_animais_janela.place(x=425, y=490)
+preco_animais_janela.place(x=425, y=550)
 
-adocao_bt = Button(frame_animais, text="Adoção", font=('Helvetica', 13), command=frame_adocao)
-adocao_bt.place(x=420, y=540)
+adocao_bt = Button(frame_animais, text="Adoção", font=('Helvetica', 13), command=lambda:[frame_adocao, cadastrar_animais()])
+adocao_bt.place(x=420, y=590)
 
-compra_bt = Button(frame_animais, text="Compra", font=('Helvetica', 13), command=frame_compra)
-compra_bt.place(x=515, y=540)
+compra_bt = Button(frame_animais, text="Compra", font=('Helvetica', 13), command=lambda:[frame_compra, cadastrar_animais()])
+compra_bt.place(x=515, y=590)
 
 adicionarbd_bt = Button(frame_animais, text="Adicionar ao bd", font=('Helvetica', 13), command=cadastrar_animais)
-adicionarbd_bt.place(x=515, y=600)
+adicionarbd_bt.place(x=515, y=640)
 
 # frame adoção
 
