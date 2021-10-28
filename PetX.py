@@ -12,8 +12,6 @@ from model.Produto import Produto
 from functools import partial
 import numpy as np
 
-
-
 tela_inicial = Tk()
 tela_inicial.title("PetX")
 tela_inicial.resizable(FALSE, FALSE)
@@ -32,6 +30,7 @@ imagemL.place(x=300, y=50)
 
 # metodos
 
+
 def esconde_frame():
     frame_login.pack_forget()
     frame_cadastrar.pack_forget()
@@ -45,8 +44,6 @@ def esconde_frame():
     frame_listar_usuarios.pack_forget()
     frame_listar_produtos.pack_forget()
     frame_listar_animais.pack_forget()
-    
-    
 
 
 def cadastrar_usuario():
@@ -56,27 +53,31 @@ def cadastrar_usuario():
     # Condição ternária abaixo > <Caso falso> if <teste> else <Caso verdadeiro>
     cadastro_erro() if qtd_usuarios == len(Usuario_DAO.read()) else cadastro_sucesso()
 
+
 def cadastrar_produto():
     qtd_produtos = len(Produto_DAO.read())
-    produtos = Produto(nome_produto_janela.get(), descricao_lb_janela.get(), quantidade_lb_janela.get(), preco_lb_janela.get())
+    produtos = Produto(nome_produto_janela.get(), descricao_lb_janela.get(), quantidade_lb_janela.get(),
+                       preco_lb_janela.get())
     Produto_DAO.create(produtos)
     cadastro_produto_erro() if qtd_produtos == len(Produto_DAO.read()) else cadastro_produto_sucesso()
 
+
 def cadastrar_animais():
     qtd_animais = len(Animal_DAO.read())
-    animais = Animal(nome_animais_janela.get(), tipo_animais_janela.get() , raca_animais_janela.get(),
+    animais = Animal(nome_animais_janela.get(), tipo_animais_janela.get(), raca_animais_janela.get(),
                      tamanho_animais_janela.get(), peso_animais_janela.get(), preco_animais_janela.get())
     Animal_DAO.create(animais)
     cadastro_animal_erro() if qtd_animais == len(Animal_DAO.read()) else cadastro_animal_sucesso()
+
 
 def cadastrar_adocao():
     Adocao_ou_Compra_DAO.create(cod_user_janela.get(), cod_animal_janela.get())
     cadastro_adocao_sucesso()
 
+
 def cadastrar_compra():
     Adocao_ou_Compra_DAO.create(cod_user_janela2.get(), cod_animal_janela2.get())
     cadastro_compra_sucesso()
-
 
 
 def cadastro_sucesso():
@@ -90,16 +91,19 @@ def cadastro_erro():
     Label(confirmacao, text="Usuário não cadastrado, tente novamente").pack()
     frame_cadastrar.pack(fill="both", expand=1)
 
+
 def cadastro_produto_sucesso():
     confirmacao = Toplevel(frame_tela_inicial)
     texto = Label(confirmacao, text="Produto cadastrado com sucesso!").pack()
     frame_carrinho.pack(fill="both", expand=1)
     esconde_frame()
 
+
 def cadastro_produto_erro():
     confirmacao = Toplevel(frame_cadastrar)
     Label(confirmacao, text="Produto não cadastrado, tente novamente").pack()
     frame_produtos.pack(fill="both", expand=1)
+
 
 def cadastro_animal_sucesso():
     confirmacao = Toplevel(frame_tela_inicial)
@@ -107,22 +111,23 @@ def cadastro_animal_sucesso():
     frame_animais.pack(fill="both", expand=1)
     esconde_frame()
 
+
 def cadastro_animal_erro():
     confirmacao = Toplevel(frame_animais)
     Label(confirmacao, text="Animal não cadastrado, tente novamente").pack()
     frame_animais.pack(fill="both", expand=1)
+
 
 def cadastro_adocao_sucesso():
     confirmacao = Toplevel(frame_adocao)
     Label(confirmacao, text="Animal cadastrado para adoção!").pack()
     esconde_frame()
 
+
 def cadastro_compra_sucesso():
     confirmacao = Toplevel(frame_adocao)
     Label(confirmacao, text="Animal cadastrado para compra!").pack()
     esconde_frame()
-
-
 
 
 def entrar():
@@ -169,11 +174,13 @@ def frame_pedidos():
     esconde_frame()
     frame_pedidos.pack(fill="both", expand=1)
 
-def confirm_sair(): 
+
+def confirm_sair():
     confirmacao = Toplevel(tela_inicial)
     texto = Label(confirmacao, text="Deseja realmente sair?").pack()
     botaoSim = Button(confirmacao, text="Sim", command=tela_inicial.destroy).pack()
     botaoNao = Button(confirmacao, text="Não", command=confirmacao.destroy).pack()
+
 
 def sair_de_cadastro():
     frame_cadastrar.pack_forget()
@@ -185,8 +192,6 @@ def sair():
     frame_tela_inicial.pack(fill="both", expand=1)
 
 
-
-
 def listar_usuarios():
     esconde_frame()
     frame_listar_usuarios.pack(fill="both", expand=1)
@@ -196,8 +201,8 @@ def listar_usuarios():
         dados.delete(i)
 
     for i in range(registros.shape[0]):
-        dados.insert(parent='', index=0, values=(registros[i][0], registros[i][1], registros[i][2], registros[i][3], registros[i][4]))
-
+        dados.insert(parent='', index=0,
+                     values=(registros[i][0], registros[i][1], registros[i][2], registros[i][3], registros[i][4]))
 
 
 def listar_produtos():
@@ -209,20 +214,21 @@ def listar_produtos():
         dados2.delete(i)
 
     for i in range(registros.shape[0]):
-        dados2.insert(parent='', index=0, values=(registros[i][0], registros[i][1], registros[i][2], registros[i][3], registros[i][4]))
-
+        dados2.insert(parent='', index=0,
+                      values=(registros[i][0], registros[i][1], registros[i][2], registros[i][3], registros[i][4]))
 
 
 def listar_animais():
     esconde_frame()
     frame_listar_animais.pack(fill="both", expand=1)
-    registros = np.asarray(Animal_DAO.read)
+    registros = np.asarray(Animal_DAO.read())
 
     for i in dados3.get_children():
         dados3.delete(i)
 
     for i in range(registros.shape[0]):
-        dados3.insert(parent='', index=0, values=(registros[i][0], registros[i][1], registros[i][2], registros[i][3], registros[i][4], registros[i][5]))
+        dados3.insert(parent='', index=0, values=(
+            registros[i][0], registros[i][1], registros[i][2], registros[i][3], registros[i][4], registros[i][5]))
 
 
 # menus
@@ -255,29 +261,34 @@ menubar.add_cascade(label="Animais", menu=Animais)
 
 frame_tela_inicial = Frame(tela_inicial, width=largura, height=altura)
 
-bt_cadastrar_produtos = Button(frame_tela_inicial, text="CADASTRAR PRODUTOS", font=('Helvetica', 18), command=frame_produtos)
-bt_cadastrar_produtos.place(x = 10, y = 500)
+bt_cadastrar_produtos = Button(frame_tela_inicial, text="CADASTRAR PRODUTOS", font=('Helvetica', 18),
+                               command=frame_produtos)
+bt_cadastrar_produtos.place(x=10, y=500)
 
-bt_cadastrar_animais = Button(frame_tela_inicial, text="CADASTRAR ANIMAIS", font=('Helvetica', 18), command=frame_animais)
-bt_cadastrar_animais.place(x = 10, y = 550)
+bt_cadastrar_animais = Button(frame_tela_inicial, text="CADASTRAR ANIMAIS", font=('Helvetica', 18),
+                              command=frame_animais)
+bt_cadastrar_animais.place(x=10, y=550)
 
 bt_cadastrar = Button(frame_tela_inicial, text="CADASTRE-SE", font=('Helvetica', 18), command=frame_cadastrar)
-bt_cadastrar.place(x = 10, y = 600)
+bt_cadastrar.place(x=10, y=600)
 
-bt_listar_animais = Button(frame_tela_inicial, text="ANIMAIS CADASTRADOS", font=('Helvetica', 18), command=listar_animais)
+bt_listar_animais = Button(frame_tela_inicial, text="ANIMAIS CADASTRADOS", font=('Helvetica', 18),
+                           command=listar_animais)
 bt_listar_animais.place(x=750, y=500)
 
-bt_listar_produtos = Button(frame_tela_inicial, text="PRODUTOS CADASTRADOS", font=('Helvetica', 18), command=listar_produtos)
+bt_listar_produtos = Button(frame_tela_inicial, text="PRODUTOS CADASTRADOS", font=('Helvetica', 18),
+                            command=listar_produtos)
 bt_listar_produtos.place(x=750, y=550)
 
-bt_listar_usuarios = Button(frame_tela_inicial, text="USUÁRIOS CADASTRADOS", font=('Helvetica', 18), command=listar_usuarios)
+bt_listar_usuarios = Button(frame_tela_inicial, text="USUÁRIOS CADASTRADOS", font=('Helvetica', 18),
+                            command=listar_usuarios)
 bt_listar_usuarios.place(x=750, y=600)
 
 bt_listar_pedidos = Button(frame_tela_inicial, text="LISTAR PEDIDOS", font=('Helvetica', 9))
 bt_listar_pedidos.place(x=900, y=80)
 
 bt_carrinho = Button(frame_tela_inicial, text="CARRINHO DE COMPRAS", font=('Helvetica', 9), command=frame_carrinho)
-bt_carrinho.place(x = 900, y = 50)
+bt_carrinho.place(x=900, y=50)
 
 bt_sair = Button(frame_tela_inicial, text="SAIR", font=('Helvetica', 15), command=confirm_sair)
 bt_sair.place(x=500, y=650)
@@ -313,8 +324,6 @@ titulo = ttk.Label(frame_cadastrar, text="Cadastre-se",
                    font=('Helvetica', 30))
 titulo.place(x=400, y=40)
 
-
-
 nome_lb = Label(frame_cadastrar, text="NOME", font=('Helvetica', 13))
 nome_lb.place(x=425, y=200)
 nome_tela = Entry(frame_cadastrar)
@@ -344,7 +353,7 @@ cadastrar_bt = Button(frame_cadastrar, text="Cadastrar", font=('Helvetica', 13),
 cadastrar_bt.place(x=425, y=480)
 
 quit_bt = Button(frame_cadastrar, text="Sair", font=('Helvetica', 13), command=sair_de_cadastro)
-quit_bt.place(x = 530, y=480)
+quit_bt.place(x=530, y=480)
 
 # frame produtos
 
@@ -375,11 +384,12 @@ preco_lb.place(x=425, y=340)
 preco_lb_janela = Entry(produtos_frame)
 preco_lb_janela.place(x=425, y=370)
 
-carrinho_bt = Button(produtos_frame, text="Cadastrar pedido", font=('Helvetica', 13), command=lambda:[frame_pedidos, cadastrar_produto()])
+carrinho_bt = Button(produtos_frame, text="Cadastrar pedido", font=('Helvetica', 13),
+                     command=lambda: [frame_pedidos, cadastrar_produto()])
 carrinho_bt.place(x=425, y=420)
 
 sair_bt = Button(produtos_frame, text="Sair", font=('Helvetica', 13), command=sair)
-sair_bt.place(x = 425, y = 460)
+sair_bt.place(x=425, y=460)
 
 # frame animais
 
@@ -389,18 +399,15 @@ titulo_animais = ttk.Label(frame_animais, text="Animais",
                            font=('Helvetica', 30))
 titulo_animais.place(x=400, y=40)
 
-
 nome_animais_lb = Label(frame_animais, text="NOME DO ANIMAL", font=('Helvetica', 13))
 nome_animais_lb.place(x=425, y=160)
 nome_animais_janela = Entry(frame_animais)
 nome_animais_janela.place(x=425, y=190)
 
-
 tipo_animais_lb = Label(frame_animais, text="TIPO DO ANIMAL", font=('Helvetica', 13))
 tipo_animais_lb.place(x=425, y=220)
 tipo_animais_janela = Entry(frame_animais)
 tipo_animais_janela.place(x=425, y=250)
-
 
 raca_animais_lb = Label(frame_animais, text="RAÇA DO ANIMAL", font=('Helvetica', 13))
 raca_animais_lb.place(x=425, y=280)
@@ -422,23 +429,22 @@ preco_animais_lb.place(x=425, y=460)
 preco_animais_janela = Entry(frame_animais)
 preco_animais_janela.place(x=425, y=490)
 
+adocao_bt = Button(frame_animais, text="Cadastrar Animal para Adoção", font=('Helvetica', 13),
+                   command=lambda: [frame_adocao, cadastrar_animais()])
+adocao_bt.place(x=250, y=580)
 
+prosseguir_bt = Button(frame_animais, text="Prosseguir para Adoção", font=('Helvetica', 13), command=frame_adocao)
+prosseguir_bt.place(x=250, y=630)
 
-adocao_bt = Button(frame_animais, text="Cadastrar Animal para Adoção",font=('Helvetica', 13), command=lambda:[frame_adocao, cadastrar_animais()])
-adocao_bt.place(x = 250, y = 580)
+compra_bt = Button(frame_animais, text="Cadastrar Animal para Compra", font=('Helvetica', 13),
+                   command=lambda: [frame_compra, cadastrar_animais()])
+compra_bt.place(x=600, y=580)
 
-prosseguir_bt = Button(frame_animais, text="Prosseguir para Adoção",font=('Helvetica', 13), command=frame_adocao)
-prosseguir_bt.place(x = 250, y = 630)
-
-compra_bt = Button(frame_animais, text="Cadastrar Animal para Compra",font=('Helvetica', 13), command=lambda:[frame_compra, cadastrar_animais()] )
-compra_bt.place(x = 600, y = 580)
-
-prosseguir_bt2 = Button(frame_animais, text="Prosseguir para Compra",font=('Helvetica', 13), command=frame_compra)
-prosseguir_bt2.place(x = 600, y = 630)
+prosseguir_bt2 = Button(frame_animais, text="Prosseguir para Compra", font=('Helvetica', 13), command=frame_compra)
+prosseguir_bt2.place(x=600, y=630)
 
 voltar_bt = Button(frame_animais, text="Sair", font=('Helvetica', 13), command=sair)
-voltar_bt.place(x = 520, y = 670)
-
+voltar_bt.place(x=520, y=670)
 
 # frame adoção
 
@@ -447,7 +453,6 @@ titulo_adocao = ttk.Label(frame_adocao, text="Adoção",
                           style="primary.Inverse.TLabel", padding=(50, 30, 50, 30),
                           font=('Helvetica', 30))
 titulo_adocao.place(x=400, y=40)
-
 
 cod_user_lb = Label(frame_adocao, text="COD USUÁRIO", font=('Helvetica', 13))
 cod_user_lb.place(x=425, y=160)
@@ -459,19 +464,14 @@ cod_animal_lb.place(x=425, y=220)
 cod_animal_janela = Entry(frame_adocao)
 cod_animal_janela.place(x=425, y=250)
 
-
-
 bt_cadastrar_adocao = Button(frame_adocao, text="Cadastrar Adoção", font=('Helvetica', 13), command=cadastrar_adocao)
-bt_cadastrar_adocao.place(x = 425, y=330)
+bt_cadastrar_adocao.place(x=425, y=330)
 
 bt_pedido = Button(frame_adocao, text="Prosseguir para Pedido", font=('Helvetica', 13), command=frame_pedidos)
-bt_pedido.place(x = 425, y=380)
+bt_pedido.place(x=425, y=380)
 
 sair_bt = Button(frame_adocao, text="Sair", font=('Helvetica', 13), command=sair)
-sair_bt.place(x = 425, y = 440)
-
-
-
+sair_bt.place(x=425, y=440)
 
 # frame compra
 
@@ -480,7 +480,6 @@ titulo_compra = ttk.Label(frame_compra, text="Compra",
                           style="primary.Inverse.TLabel", padding=(50, 30, 50, 30),
                           font=('Helvetica', 30))
 titulo_compra.place(x=400, y=40)
-
 
 cod_user_lb = Label(frame_compra, text="COD USUÁRIO", font=('Helvetica', 13))
 cod_user_lb.place(x=425, y=160)
@@ -492,15 +491,14 @@ cod_animal_lb.place(x=425, y=220)
 cod_animal_janela2 = Entry(frame_compra)
 cod_animal_janela2.place(x=425, y=250)
 
-
 bt_cadastrar_compra = Button(frame_compra, text="Cadastrar Compra", font=('Helvetica', 13), command=cadastrar_compra)
-bt_cadastrar_compra.place(x = 425, y=330)
+bt_cadastrar_compra.place(x=425, y=330)
 
 bt_pedido2 = Button(frame_compra, text="Prosseguir para Pedido", font=('Helvetica', 13), command=frame_pedidos)
-bt_pedido2.place(x = 425, y=380)
+bt_pedido2.place(x=425, y=380)
 
 sair3_bt = Button(frame_compra, text="Sair", font=('Helvetica', 13), command=sair)
-sair3_bt.place(x = 425, y = 440)
+sair3_bt.place(x=425, y=440)
 
 # frame carrinho de compras
 
@@ -521,20 +519,19 @@ cod_produto_janela = Entry(frame_carrinho)
 cod_produto_janela.place(x=425, y=250)
 
 compra_finalizada_bt = Button(frame_carrinho, text="Finalizar compra", font=('Helvetica', 13))
-compra_finalizada_bt.place(x = 425, y=325)
+compra_finalizada_bt.place(x=425, y=325)
 
 # frame listar usuarios cadastrados
 
-frame_listar_usuarios = Frame(tela_inicial, width = 1100, height = 750)
+frame_listar_usuarios = Frame(tela_inicial, width=1100, height=750)
 
-titulo_ = ttk.Label(frame_listar_usuarios, text = "Usuários cadastrados", 
-                   style="primary.Inverse.TLabel",
-                   padding=(50,30,50,30),
-                   font=('Helvetica', 30))
-titulo_.place(x = 400, y= 40)
+titulo_ = ttk.Label(frame_listar_usuarios, text="Usuários cadastrados",
+                    style="primary.Inverse.TLabel",
+                    padding=(50, 30, 50, 30),
+                    font=('Helvetica', 30))
+titulo_.place(x=400, y=40)
 
-
-dados = ttk.Treeview(frame_listar_usuarios, columns=[1,2,3,4,5], show='headings', style='sucess.Treeview')
+dados = ttk.Treeview(frame_listar_usuarios, columns=[1, 2, 3, 4, 5], show='headings', style='sucess.Treeview')
 dados.heading(1, text="Nome")
 dados.heading(2, text="Sobrenome")
 dados.heading(3, text="Cpf")
@@ -545,36 +542,33 @@ dados.grid(row=1, column=0)
 
 # frame listar produtos
 
-frame_listar_produtos = Frame(tela_inicial, width = 1100, height = 750)
+frame_listar_produtos = Frame(tela_inicial, width=1100, height=750)
 
-titulo_2 = ttk.Label(frame_listar_produtos, text = "Produtos cadastrados", 
-                   style="primary.Inverse.TLabel",
-                   padding=(50,30,50,30),
-                   font=('Helvetica', 30))
-titulo_2.place(x = 400, y= 40)
+titulo_2 = ttk.Label(frame_listar_produtos, text="Produtos cadastrados",
+                     style="primary.Inverse.TLabel",
+                     padding=(50, 30, 50, 30),
+                     font=('Helvetica', 30))
+titulo_2.place(x=400, y=40)
 
-
-dados2 = ttk.Treeview(frame_listar_produtos, columns=[1,2,3,4], show='headings', style='sucess.Treeview')
+dados2 = ttk.Treeview(frame_listar_produtos, columns=[1, 2, 3, 4], show='headings', style='sucess.Treeview')
 dados2.heading(1, text="Nome")
 dados2.heading(2, text="Descrição")
 dados2.heading(3, text="Quantidade")
 dados2.heading(4, text="Preço")
 
-
 dados2.grid(row=1, column=0)
-
 
 # frame listar animais
 
-frame_listar_animais = Frame(tela_inicial, width = 1100, height = 750)
+frame_listar_animais = Frame(tela_inicial, width=1100, height=750)
 
-titulo_3 = ttk.Label(frame_listar_animais, text = "Animais cadastrados", 
-                   style="primary.Inverse.TLabel",
-                   padding=(50,30,50,30),
-                   font=('Helvetica', 30))
-titulo_3.place(x = 400, y= 40)
+titulo_3 = ttk.Label(frame_listar_animais, text="Animais cadastrados",
+                     style="primary.Inverse.TLabel",
+                     padding=(50, 30, 50, 30),
+                     font=('Helvetica', 30))
+titulo_3.place(x=400, y=40)
 
-dados3 = ttk.Treeview(frame_listar_animais, columns=[1,2,3,4,5,6], show='headings', style='sucess.Treeview')
+dados3 = ttk.Treeview(frame_listar_animais, columns=[1, 2, 3, 4, 5, 6], show='headings', style='sucess.Treeview')
 
 dados3.heading(1, text="Nome")
 dados3.heading(2, text="Tipo do animal")
@@ -585,7 +579,6 @@ dados3.heading(6, text="Preço")
 
 dados3.grid(row=1, column=0)
 
-
 # frame pedidos
 
 frame_pedidos = Frame(tela_inicial, width=largura, height=altura)
@@ -593,7 +586,6 @@ titulo_pedidos = ttk.Label(frame_pedidos, text="Pedidos",
                            style="primary.Inverse.TLabel", padding=(50, 30, 50, 30),
                            font=('Helvetica', 30))
 titulo_pedidos.place(x=400, y=40)
-
 
 cod_usuario_lb = Label(frame_pedidos, text="COD USUÁRIO", font=('Helvetica', 13))
 cod_usuario_lb.place(x=425, y=160)
@@ -605,14 +597,8 @@ data_lb.place(x=425, y=220)
 data_janela = Entry(frame_pedidos)
 data_janela.place(x=425, y=250)
 
-
 cadastrar_pedido_bt = Button(frame_pedidos, text="Cadastrar pedido", font=('Helvetica', 13))
-cadastrar_pedido_bt.place(x = 425, y = 290)
-
-
-
-
-
+cadastrar_pedido_bt.place(x=425, y=290)
 
 tela_inicial.config(menu=menubar)
 tela_inicial.mainloop()
